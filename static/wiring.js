@@ -1,3 +1,11 @@
+/*
+
+Similar to the server's WebSocketServer wrapper, this makes handling socket
+connections a bit easier. It reconnects if the socket closes for some reason,
+with up to 10 retries. It also automatically serializes and deserializes
+messages, and emits events to make it easier to listen for specific commands.
+
+*/
 export default class Wiring extends EventTarget {
   constructor() {
     super();
@@ -15,7 +23,7 @@ export default class Wiring extends EventTarget {
 
   onOpen() {
     console.log("Connected");
-    this.send({ type: "ping" })
+    this.attempts = 0;
   }
 
   send(message) {

@@ -2,6 +2,10 @@ var { EventEmitter } = require("events");
 
 var guid = 0;
 
+/* 
+This class handles room state, and emits events when they're added, removed,
+or updated. It's a pretty simple model.
+*/
 class StudioManager extends EventEmitter {
   constructor() {
     super();

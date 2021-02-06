@@ -22,12 +22,14 @@ class WebSocketServer extends EventEmitter {
     this.emit("connected", socket);
   }
 
+  // dispatches events based on the `type` property
   onMessage(message) {
     if (typeof message == "string") message = JSON.parse(message);
     var { type } = message;
     this.emit(type, message);
   }
 
+  // send a message to all connected clients
   broadcast(message) {
     var { clients } = this.server;
     var serialized = JSON.stringify(message);

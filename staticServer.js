@@ -20,6 +20,7 @@ var types = {
 
 server.on("request", async function(request, response) {
   var requested = request.url;
+  // default file handling in the root directory
   if (requested == "/") requested = "index.html";
   var file = path.join("static", requested);
   var contents;
@@ -27,8 +28,8 @@ server.on("request", async function(request, response) {
     contents = await fs.readFile(file);
   } catch (err) {
     // unable to read, send 404
-    response.status = 404;
-    response.end();
+    response.writeHead(404);
+    response.end("404 not found");
     return;
   }
   var mime = types[path.extname(requested)];

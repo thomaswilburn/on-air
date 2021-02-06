@@ -24,18 +24,19 @@ export default class App extends Component {
     setInterval(() => this.connection.send({ type: "keepalive" }), 30 * 1000);
   }
 
+  // called when the server notifies us with fresh state
   onStudioUpdate({ detail }) {
     var { rooms } = detail;
     this.setState({ rooms });
   }
 
+  // toggle a sign off and on
   onClickStudio(key, active) {
     this.connection.send({ "type": "studio-toggle", key, active });
   }
 
   addRoom() {
     var name = this.state.addName;
-    console.log(name);
     this.connection.send({ "type": "studio-add", name });
   }
 
