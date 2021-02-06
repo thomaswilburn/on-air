@@ -53,8 +53,17 @@ export default class App extends Component {
         <ul class="rooms">
           ${state.rooms.map(r => html`
           <li key=${r.key}>
-            <label id="${"label-" + r.key}">
-              ${r.name}
+            <button
+              class="studio-light"
+              aria-labelledby="${"label-" + r.key}"
+              aria-pressed="${r.active}"
+              onClick=${() => this.onClickStudio(r.key, !r.active)}>
+              on air
+            </button>
+            <div class="label-ui">
+              <label id="${"label-" + r.key}" aria-hidden="true">
+                ${r.name}
+              </label>
               <button
                 class="remove-room"
                 aria-label="remove"
@@ -64,14 +73,7 @@ export default class App extends Component {
                   <path d="M0,0 L8,8 M0,8 L8,0" stroke="currentColor" fill="none" />
                 </svg>
               </button>
-            </label>
-            <button
-              class="studio-light"
-              aria-labelledby="${"label-" + r.key}"
-              aria-pressed="${r.active}"
-              onClick=${() => this.onClickStudio(r.key, !r.active)}>
-              on air
-            </button>
+            </div>
           </li>
           `)}
         </ul>
