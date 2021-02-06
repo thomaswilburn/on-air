@@ -48,7 +48,7 @@ export default class App extends Component {
     return html`
       <div class="ui">
         <div class="add-bar">
-          <input value=${state.addName} onInput=${e => this.setState({ addName: e.target.value })} />
+          <input placeholder="Room name" value=${state.addName} onInput=${e => this.setState({ addName: e.target.value })} />
           <button class="add-room" onClick=${this.addRoom}>Add room</button>
         </div>
         <ul class="rooms">
