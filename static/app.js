@@ -21,6 +21,7 @@ export default class App extends Component {
 
     this.connection = new Wiring();
     this.connection.addEventListener("studio-update", this.onStudioUpdate);
+    setInterval(() => this.connection.send({ type: "keepalive" }), 30 * 1000);
   }
 
   onStudioUpdate({ detail }) {
