@@ -4,6 +4,13 @@
 
 Figuring out whether someone was on a live mic with an audience used to be a problem that only radio and TV professionals regularly faced. In COVID times, when many of us have multiple adults working from a single home, many more of us are on the horns of this dilemma. On Air is a simple status display designed to let a household easily mark rooms as "live," and instantly update everyone else, so that you'll know when to burst in and when to send a discrete text instead.
 
+## Running locally
+
+1. Clone this repo and run `npm i`. You should have Node 11+ installed (required for the `fs.promises` module).
+2. Run `npm run dev` to start a local server **OR**
+3. Run `npm start` to begin in "production" mode
+4. Open a browser to `localhost:8000` to see the page. Other devices on the local network should be able to access the page as well, but for testing you can open two local browsers to see them update live.
+
 ## Architecture
 
 The back-end server for the application is a simple Node app with few dependencies. It serves static files for the front-end code, but most of its functionality is actually built around WebSocket connections. An in-memory model of the "studio complex" keeps a list of rooms and their status, which is transmitted to any connected clients whenever there's a change.
