@@ -19,11 +19,11 @@ class WebSocketServer extends EventEmitter {
     console.log("Socket connected");
     socket.on("message", this.onMessage);
     socket.on("close", () => console.log("Socket closed"));
-    this.broadcast({ type: "ping" })
+    this.emit("connected", socket);
   }
 
   onMessage(message) {
-    console.log(message);
+    if (typeof message == "string") message = JSON.parse(message);
     var { type } = message;
     this.emit(type, message);
   }

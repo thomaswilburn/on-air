@@ -26,6 +26,7 @@ export default class Wiring extends EventTarget {
     var data = event.data;
     if (typeof data == "string") data = JSON.parse(data);
     var { type } = data;
+    console.log(type);
     var emitted = new CustomEvent(type, { detail: data });
     this.dispatchEvent(emitted);
   }
